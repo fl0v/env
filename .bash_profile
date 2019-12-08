@@ -23,9 +23,9 @@ function __grepcode() {
 }
 alias grepcode="__grepcode"
 
-#alias ssh="ssh -A"
-#exec ssh-agent $BASH -s 10<&0 << EOF
-#    ssh-add &> /dev/null
-#    exec $BASH <&10-
-#EOF
+alias ssh="ssh -A"
+exec ssh-agent $BASH -s 10<&0 << EOF
+    ssh-add &> /dev/null
+    exec $BASH <&10-
+EOF
 
