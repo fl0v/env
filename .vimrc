@@ -16,7 +16,8 @@ set showmode " show the mode we're in
 set nosol " try to stay in same column when jumping
 set ignorecase
 set ruler
-set smartindent
+set nosi
+"set smartindent
 set autoindent
 
 let g:loaded_matchparen=1
@@ -49,7 +50,7 @@ if has("autocmd")
         autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
     endif
     call plug#begin('~/.vim/plugged')
-    Plug 'pangloss/vim-javascript'
+    "Plug 'pangloss/vim-javascript'
     Plug 'leafgarland/typescript-vim'
     Plug 'ianks/vim-tsx'
     call plug#end()
