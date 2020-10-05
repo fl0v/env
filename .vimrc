@@ -20,6 +20,16 @@ set nosi
 "set smartindent
 set autoindent
 
+" Ctrl+s to save
+map <C-s> :w<cr>
+imap <C-s> <ESC>:w<cr>a
+
+" Ctrl+q to quit, hold shift to discard changes
+map <C-q> :q<cr>
+imap <C-q> <ESC>:q<cr>
+map <C-S-q> :q!<cr>
+imap <C-S-q> <ESC>:q!<cr>
+
 let g:loaded_matchparen=1
 "set keywordprg=/web/php_doc
 "let Tlist_Ctags_Cmd ='/usr/bin/ctags'
