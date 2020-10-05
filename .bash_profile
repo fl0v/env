@@ -24,8 +24,11 @@ function __grepcode() {
 alias grepcode="__grepcode"
 
 alias ssh="ssh -A"
-exec ssh-agent $BASH -s 10<&0 << EOF
-    ssh-add &> /dev/null
-    exec $BASH <&10-
-EOF
+
+# Start ssh-agent if not present (for keys on curent server)
+if [ -z "$SSH_AUTH_SOCK" ] ; then
+    eval `ssh-agent`
+    trap 'kill $SSH_AGENT_PID' EXIT
+    ssh-add # add keys
+fi
 
