@@ -1,0 +1,6 @@
+#!/bin/bash
+
+REMOTE=$1
+
+# env
+rsync -rthiv ~/env $REMOTE:~/

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# se trimite doar serverul fara user
+REMOTE=$1
+
+# test if login already possible
+ssh -q -o PasswordAuthentication=no worker@$REMOTE echo "" > /dev/null
+if [ $? -eq 0 ] 
+then
+    echo "You can already login!"
+exit
+fi
+
+pub_key=`cat ~/.ssh/id_rsa.pub`
+
+command='sudo -u worker -H /bin/bash -c "umask 077 && mkdir -p /home/worker/.ssh && echo '$pub_key' | sudo tee --append /home/worker/.ssh/authorized_keys > /dev/null"'
+
+ssh -t $REMOTE "$command"
+
