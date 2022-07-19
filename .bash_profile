@@ -23,6 +23,25 @@ function __grepcode() {
 }
 alias grepcode="__grepcode"
 
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
+# default
+#export PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\ $ "
+
+# custom original
+#export PS1="\u@\h \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
+
+# my
+txtlgreen='\[\033[01;32m\]'
+txtdgreen='\[\033[32m\]'
+txtreset='\[\033[00m\]'
+txtblue='\[\033[01;34m\]'
+txtorange='\[\033[33m\]'
+customizetitle='\[\e]0;\h:\w\a\]'
+export PS1="$customizetitle${debian_chroot:+($debian_chroot)}$txtlgreen\u@\h$txtreset $txtblue\w$txtreset$txtorange\$(parse_git_branch)$txtreset $ "
+
 alias ssh="ssh -A"
 
 # Start ssh-agent if not present (for keys on curent server)
